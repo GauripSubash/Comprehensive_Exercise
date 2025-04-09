@@ -11,18 +11,22 @@ public class Player {
 	public Player(String name) {
 		this.name = name;
 		wins = 0;
-		
-		
-		
 	}
 	
 	public Player(String name, int wins) {
 		this.name = name;
 		this.wins = wins;
-		
-		
 	}
 	
+	public String getName() {
+        return this.name;
+    }
 	
-	
+    public int getWins() {
+        return this.wins;
+    }
+
+    public void addWin() {
+        this.wins++;
+    }
 }
