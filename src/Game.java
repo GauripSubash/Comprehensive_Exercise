@@ -33,7 +33,7 @@ public class Game {
 		return column; 
 	}
 	
-	public void getPlayerInput(int columnInput) {
+	public void usePlayerInput(int columnInput) {
 		getColumn = columnInput;
 	}
 	
