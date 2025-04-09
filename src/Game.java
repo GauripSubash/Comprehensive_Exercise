@@ -37,6 +37,10 @@ public class Game {
 		getColumn = columnInput;
 	}
 	
+	public void incrementTurn() {
+		playerTurn++;
+	}
+	
 	public void playerOneWin() {
 		playerOne.addWin();
 		System.out.println("Congratulations " + playerOne.getName() 
