@@ -42,7 +42,7 @@ public class Board {
     
     public void addElement(int playersChoice, char playerChar) {
 		for(int i = rows - 1; i >= 0; i--) {
-			if((GAME_BOARD[i][playersChoice] != 'x') || (GAME_BOARD[i][playersChoice] != 'o')){
+			if((GAME_BOARD[i][playersChoice] != 'x') && (GAME_BOARD[i][playersChoice] != 'o')){
 				GAME_BOARD[i][playersChoice] = playerChar;
 				break;
 			}
