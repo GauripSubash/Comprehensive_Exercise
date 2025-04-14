@@ -96,6 +96,7 @@ public class Game {
         gameBoard.resetBoard();
         gameBoard.printBoard();
         
+        boolean turnValid;
         
         while (ConnectFour.playing) {
             
@@ -103,20 +104,53 @@ public class Game {
                 System.out.print(playerOneName + ", select a column: ");
                 int playerChoice = scnr.nextInt();
                 
-                gameBoard.addElement(playerChoice-1, playerOneChar);
+                turnValid = false;
+                int potentialTurn = 0;
                 
-                gameBoard.printBoard();
-                ConnectFour.incrementTurn();
+                while(!turnValid){
+                    potentialTurn = gameBoard.potentialElement(playerChoice-1, playerOneChar);
+                    if (potentialTurn != -1){               
+                        gameBoard.addElement(playerChoice-1, playerOneChar);                    
+                        gameBoard.printBoard();
+                        ConnectFour.incrementTurn();
+                        turnValid = true;
+                    } else {
+                        System.out.println("Column is full!");
+                        
+                        System.out.print(playerOneName + ", select a column: ");
+                        playerChoice = scnr.nextInt();
+                    }
+                }
+                if (gameBoard.checkHorizontalWin(potentialTurn, playerOneChar)) {
+                   System.out.println("Player one wins");
+                }
             }
             
-            if (ConnectFour.playerTurn % 2 == 1) {
+            else if (ConnectFour.playerTurn % 2 == 1) {
                 System.out.print(playerTwoName + ", select a column: ");
                 int playerChoice = scnr.nextInt();
                 
-                gameBoard.addElement(playerChoice-1, playerTwoChar);
+                turnValid = false;
+                int potentialTurn = 0;
                 
-                gameBoard.printBoard();
-                ConnectFour.incrementTurn();
+                while(!turnValid){
+                    potentialTurn = gameBoard.potentialElement(playerChoice-1, playerTwoChar);
+                    if (potentialTurn != -1){               
+                        gameBoard.addElement(playerChoice-1, playerTwoChar);                    
+                        gameBoard.printBoard();
+                        ConnectFour.incrementTurn();
+                        turnValid = true;
+                    } else {
+                        System.out.println("Column is full!");
+                        
+                        System.out.print(playerTwoName + ", select a column: ");
+                        playerChoice = scnr.nextInt();
+                    }
+                }
+                
+                if (gameBoard.checkHorizontalWin(potentialTurn, playerTwoChar)) {
+                   System.out.println("Player two wins");
+                }
             }
         }
     }

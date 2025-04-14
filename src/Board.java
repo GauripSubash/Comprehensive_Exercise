@@ -44,13 +44,29 @@ public class Board {
 		for(int i = rows - 1; i >= 0; i--) {
 			if((GAME_BOARD[i][playersChoice] != 'x') && (GAME_BOARD[i][playersChoice] != 'o')){
 				GAME_BOARD[i][playersChoice] = playerChar;
-				break;
+                break;
 			}
-			
 		}
-	}
+	}    
     
+    public int potentialElement(int playersChoice, char playerChar) {
+        for(int i = rows - 1; i >= 0; i--) {
+			if((GAME_BOARD[i][playersChoice] != 'x') && (GAME_BOARD[i][playersChoice] != 'o')){
+				return i;
+			}
+		}
+        return -1;
+    }
     
-    
-    
+    public boolean checkHorizontalWin(int row, char playerChar) {
+        for (int i = 0; i < columns-3; i++) {
+            for (int j = 0; j < columns; j++) {
+                if((GAME_BOARD[row][j] == playerChar) && (GAME_BOARD[row][j+1] == playerChar) && (GAME_BOARD[row][j+2] == playerChar) && (GAME_BOARD[row][j+3] == playerChar)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
 }
