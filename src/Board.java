@@ -37,7 +37,7 @@ public class Board {
         for (int i = 1; i < columns + 1; i++) {
             System.out.print(" " + i);
         }
-		
+		System.out.println();
 	}
     
     public void addElement(int playersChoice, char playerChar) {

@@ -8,12 +8,14 @@ public class Game {
 	private Player playerTwo;
 	private int playerTurn;
 	private int column; 
+    private boolean playing;
 	
 	public Game(Player playerOne, Player playerTwo) {
 		
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
 		playerTurn = 0;
+        playing = true;
 		
 	}
 	
@@ -38,7 +40,7 @@ public class Game {
 	}
 	
 	public void incrementTurn() {
-		playerTurn++;
+        playerTurn++;
 	}
 	
 	public void playerOneWin() {
@@ -67,17 +69,26 @@ public class Game {
         Player playerOne = new Player(playerOneName);
         Player playerTwo = new Player(playerTwoName);
         
+        Game ConnectFour = new Game(playerOne, playerTwo);
+        
         System.out.print("Enter the size of the board: ");
         int rows = scnr.nextInt();
         System.out.println();
         
         Random rand = new Random();
-        int choice = rand.nextInt(2);
+        ConnectFour.playerTurn = rand.nextInt(2);
         
-        if (choice == 0) {
-            System.out.println(playerOneName + " goes first.");
-        } else if (choice == 1) {
-            System.out.println(playerTwoName + " goes first.");
+        char playerOneChar = ' ';
+        char playerTwoChar = ' ';
+        
+        if (ConnectFour.playerTurn == 0) {
+            System.out.println(playerOneName + " goes first. They will be 'x'. The other player will be 'o'.");
+            playerOneChar = 'x';
+            playerTwoChar = 'o';
+        } else if (ConnectFour.playerTurn == 1) {
+            System.out.println(playerTwoName + " goes first. They will be 'x'. The other player will be 'o'.");
+            playerTwoChar = 'x';
+            playerOneChar = 'o';
         }
         
         Board gameBoard = new Board(rows, rows);
@@ -86,6 +97,28 @@ public class Game {
         gameBoard.printBoard();
         
         
+        while (ConnectFour.playing) {
+            
+            if (ConnectFour.playerTurn % 2 == 0) {
+                System.out.print(playerOneName + ", select a column: ");
+                int playerChoice = scnr.nextInt();
+                
+                gameBoard.addElement(playerChoice-1, playerOneChar);
+                
+                gameBoard.printBoard();
+                ConnectFour.incrementTurn();
+            }
+            
+            if (ConnectFour.playerTurn % 2 == 1) {
+                System.out.print(playerTwoName + ", select a column: ");
+                int playerChoice = scnr.nextInt();
+                
+                gameBoard.addElement(playerChoice-1, playerTwoChar);
+                
+                gameBoard.printBoard();
+                ConnectFour.incrementTurn();
+            }
+        }
     }
 	
 }
