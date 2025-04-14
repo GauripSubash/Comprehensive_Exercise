@@ -58,7 +58,7 @@ public class Game {
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
         
-        System.out.println("Welcome to Connect Four!");
+        System.out.println("\nWelcome to Connect Four!");
         System.out.print("Enter Player 1 Name: ");
         String playerOneName = scnr.next();
         System.out.print("Enter Player 2 Name: ");
@@ -67,12 +67,23 @@ public class Game {
         Player playerOne = new Player(playerOneName);
         Player playerTwo = new Player(playerTwoName);
         
-        System.out.println("Enter the size of the board: ");
+        System.out.print("Enter the size of the board: ");
         int rows = scnr.nextInt();
+        System.out.println();
         
         Board gameBoard = new Board(rows, rows);
         
+        gameBoard.resetBoard();
         gameBoard.printBoard();
+        
+        Random rand = new Random();
+        int choice = rand.nextInt(2);
+        
+        if (choice == 0) {
+            System.out.println(playerOneName + " goes first.");
+        } else if (choice == 1) {
+            System.out.println(playerTwoName + " goes first.");
+        }
     }
 	
 }

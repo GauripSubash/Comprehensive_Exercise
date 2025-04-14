@@ -14,9 +14,10 @@ public class Board {
 	public Board(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
+        GAME_BOARD = new char[rows][columns];
 	}
 	
-	void resetBoard() {
+	public void resetBoard() {
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < columns; j++) {
 				GAME_BOARD[i][j] = '_';
@@ -24,7 +25,7 @@ public class Board {
 		}
 	}
 	
-	void printBoard() {
+	public void printBoard() {
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < columns; j++) {
 				System.out.print("|" + GAME_BOARD[i][j]);
@@ -32,10 +33,14 @@ public class Board {
 			}
 			System.out.println("|");
 		}
+        
+        for (int i = 1; i < columns + 1; i++) {
+            System.out.print(" " + i);
+        }
 		
 	}
     
-    void addElement(int playersChoice, char playerChar) {
+    public void addElement(int playersChoice, char playerChar) {
 		for(int i = rows; i >= 1; i--) {
 			if((GAME_BOARD[i][playersChoice] != 'x') || (GAME_BOARD[i][playersChoice] != 'o')){
 				GAME_BOARD[i][playersChoice] = playerChar;
