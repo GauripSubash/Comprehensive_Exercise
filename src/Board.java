@@ -11,7 +11,7 @@ public class Board {
 	private int rows;
 	private int columns;
 	
-	Board setBoard(int rows, int columns) {
+	public Board(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
 	}
@@ -36,9 +36,9 @@ public class Board {
 	}
     
     void addElement(int playersChoice, char playerChar) {
-		for(int i = rows; i >= 7; i++) {
-			if(!(Game_Board[i][playersChoice] == 'x' || 'o')){
-				Game_Board[i][playersChoice] = playerChar;
+		for(int i = rows; i >= 1; i--) {
+			if((GAME_BOARD[i][playersChoice] != 'x') || (GAME_BOARD[i][playersChoice] != 'o')){
+				GAME_BOARD[i][playersChoice] = playerChar;
 				break;
 			}
 			

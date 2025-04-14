@@ -34,7 +34,7 @@ public class Game {
 	}
 	
 	public void usePlayerInput(int columnInput) {
-		getColumn = columnInput;
+		this.column = columnInput;
 	}
 	
 	public void incrementTurn() {
