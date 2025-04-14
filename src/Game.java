@@ -71,11 +71,6 @@ public class Game {
         int rows = scnr.nextInt();
         System.out.println();
         
-        Board gameBoard = new Board(rows, rows);
-        
-        gameBoard.resetBoard();
-        gameBoard.printBoard();
-        
         Random rand = new Random();
         int choice = rand.nextInt(2);
         
@@ -84,6 +79,13 @@ public class Game {
         } else if (choice == 1) {
             System.out.println(playerTwoName + " goes first.");
         }
+        
+        Board gameBoard = new Board(rows, rows);
+        
+        gameBoard.resetBoard();
+        gameBoard.printBoard();
+        
+        
     }
 	
 }
