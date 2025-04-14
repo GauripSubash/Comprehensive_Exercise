@@ -54,6 +54,26 @@ public class Game {
 		+ " for winning the game!");
 		System.out.print("Want to play again? (y/n): ");
 	}
+
+    public static void main(String[] args) {
+        Scanner scnr = new Scanner(System.in);
+        
+        System.out.println("Welcome to Connect Four!");
+        System.out.print("Enter Player 1 Name: ");
+        String playerOneName = scnr.next();
+        System.out.print("Enter Player 2 Name: ");
+        String playerTwoName = scnr.next();
+        
+        Player playerOne = new Player(playerOneName);
+        Player playerTwo = new Player(playerTwoName);
+        
+        System.out.println("Enter the size of the board: ");
+        int rows = scnr.nextInt();
+        
+        Board gameBoard = new Board(rows, rows);
+        
+        gameBoard.printBoard();
+    }
 	
 }
 
