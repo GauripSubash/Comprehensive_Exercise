@@ -10,24 +10,9 @@ public class Board {
     
     public char currentElement;
     public int elementCount = 0;
-    
-    public Board {
-        private int[][] GAME_BOARD = new int[ROWS][COLUMNS];
-    }
-    
-    
-       
-    
-    
-    
-
 	
     public char[][] GAME_BOARD;
 	
-	private char playerOneElement = 'x';
-    private char playerTwoElement = 'o';
-	private char currentElement;
-	private int elementCount;
 	private int rows;
 	private int columns;
 	
