@@ -72,7 +72,6 @@ public class Board {
                 }
             }
         }
-        
         return false;
     }
     
@@ -84,7 +83,6 @@ public class Board {
                 }
             }
         }
-        
         return false;
     }
 }
