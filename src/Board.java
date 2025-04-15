@@ -1,18 +1,13 @@
 import java.util.*;
 
 public class Board {
-
-    private int[] ROWS;
-    private int[] COLUMNS;
-    
-    private char playerOneElement = 'X';
-    private char playerTwoElement = 'O';
-    
-    public char currentElement;
-    public int elementCount = 0;
 	
     public char[][] GAME_BOARD;
 	
+	private char playerOneElement = 'x';
+    private char playerTwoElement = 'o';
+	private char currentElement;
+	private int elementCount;
 	private int rows;
 	private int columns;
 	
@@ -44,13 +39,12 @@ public class Board {
         }
 		System.out.println();
 	}
-
     
     public void addElement(int playersChoice, char playerChar) {
 		for(int i = rows - 1; i >= 0; i--) {
 			if((GAME_BOARD[i][playersChoice] != 'x') && (GAME_BOARD[i][playersChoice] != 'o')){
 				GAME_BOARD[i][playersChoice] = playerChar;
-                break;
+				break;
 			}
 		}
 	}    
@@ -67,22 +61,12 @@ public class Board {
     public boolean checkHorizontalWin(int row, char playerChar) {
         for (int i = 0; i < columns-3; i++) {
             for (int j = 0; j < columns; j++) {
-                if((GAME_BOARD[row-1][j] == playerChar) && (GAME_BOARD[row-1][j+1] == playerChar) && (GAME_BOARD[row-1][j+2] == playerChar) && (GAME_BOARD[row-1][j+3] == playerChar)) {
+                if((GAME_BOARD[row][j] == playerChar) && (GAME_BOARD[row][j+1] == playerChar) && (GAME_BOARD[row][j+2] == playerChar) && (GAME_BOARD[row][j+3] == playerChar)) {
                     return true;
                 }
             }
         }
-        return false;
-    }
-    
-    public boolean checkVerticalWin(int row, char playerChar) {
-        for (int i = 0; i < columns-3; i++) {
-            for (int j = 0; j < columns; j++) {
-                if((GAME_BOARD[j][i] == playerChar) && (GAME_BOARD[j+1][i] == playerChar) && (GAME_BOARD[j+2][i] == playerChar) && (GAME_BOARD[j+3][i] == playerChar)) {
-                    return true;
-                }
-            }
-        }
+        
         return false;
     }
 }
