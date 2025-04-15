@@ -1,5 +1,8 @@
 import java.util.*;
 
+/**
+ * Class for setting up the board
+ */
 public class Board {
 	
     public char[][] GAME_BOARD;
@@ -11,12 +14,20 @@ public class Board {
 	private int rows;
 	private int columns;
 	
+	/**
+	 * Overloaded constructor that sets up the game board
+	 * @param rows rows for the connect 4
+	 * @param columns columns for the connect 4
+	 */
 	public Board(int rows, int columns) {
 		this.rows = rows;
 		this.columns = columns;
         GAME_BOARD = new char[rows][columns];
 	}
-	
+
+	/**
+	 * Method for resetting the connect 4 board
+	 */
 	public void resetBoard() {
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < columns; j++) {
@@ -25,6 +36,9 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Method for printing the board
+	 */
 	public void printBoard() {
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < columns; j++) {
@@ -40,6 +54,11 @@ public class Board {
 		System.out.println();
 	}
     
+	/**
+	 * Method for adding element to board
+	 * @param playersChoice the players choice
+	 * @param playerChar character for player
+	 */
     public void addElement(int playersChoice, char playerChar) {
 		for(int i = rows-1; i >= 0; i--) {
 			if((GAME_BOARD[i][playersChoice] != 'x') && (GAME_BOARD[i][playersChoice] != 'o')){
@@ -48,7 +67,14 @@ public class Board {
 			}
 		}
 	}    
-    
+
+	/**
+	 * Method for adding a potential element to board
+	 * @param playersChoice the players choice 
+	 * @param playerChar chracter for player
+	 * @return if the column is valid, 
+	 * the row where there isn't a character
+	 */
     public int potentialElement(int playersChoice, char playerChar) {
         if(playersChoice < 0 || playersChoice+1 > columns) {
 			System.out.println("Invalid Column!");
@@ -63,7 +89,13 @@ public class Board {
 		System.out.println("Column is full!");
         return -1;
     }
-    
+
+    /**
+	 * Checks if there is a horizontal win
+	 * @param row the row of connect 4
+	 * @param playerChar the character of the player
+	 * @return if there is a win
+	 */
     public boolean checkHorizontalWin(int row, char playerChar) {
 		for (int i = 0; i < columns-3; i++) {
 			if((GAME_BOARD[row][i] == playerChar) && (GAME_BOARD[row][i+1] == playerChar) && (GAME_BOARD[row][i+2] == playerChar) && (GAME_BOARD[row][i+3] == playerChar)) {
@@ -74,6 +106,11 @@ public class Board {
         return false;
     }
 	
+	/**
+	 * Checks if there is a vertical win
+	 * @param playerChar the character of the player
+	 * @return if there is a win
+	 */
 	public boolean checkVerticalWin(char playerChar) {
 		for (int i = 0; i < columns; i++) {
 			for (int j = columns-1; j >= columns-5; j--) {
@@ -86,6 +123,11 @@ public class Board {
         return false;
     }
 	
+	/**
+	 * Checks if there is a right diagonal win
+	 * @param playerChar the character of the player
+	 * @return if there is a win
+	 */
 	public boolean checkDiagonalRightWin(char playerChar) {
         for(int i = columns-1; i >= columns-5; i--) {  
 			for (int j = 0; j < columns-3; j++) {
@@ -99,6 +141,11 @@ public class Board {
         return false;
     }
 	
+	/**
+	 * Checks if there is a left diagonal win
+	 * @param playerChar the character of the player
+	 * @return if there is a win
+	 */
 	public boolean checkDiagonalLeftWin(char playerChar) {
         for(int i = columns-1; i >= columns-5; i--) {  
 			for (int j = columns-1; j >= columns-5; j--) {
