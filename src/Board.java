@@ -2,6 +2,10 @@ import java.util.*;
 
 /**
  * Class for setting up the board
+ * @author Gaurinath Subash
+ * @author Michael Elliott
+ * @author Xander Hong
+ * @author Kristian Padgett
  */
 public class Board {
 	

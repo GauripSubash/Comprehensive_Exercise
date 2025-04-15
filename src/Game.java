@@ -3,6 +3,10 @@ import java.util.*;
 
 /**
  * Class for the Connect 4 game
+ * @author Gaurinath Subash
+ * @author Michael Elliott
+ * @author Xander Hong
+ * @author Kristian Padgett
  */
 public class Game {
 	

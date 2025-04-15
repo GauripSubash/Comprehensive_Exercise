@@ -3,6 +3,10 @@ import java.util.*;
 
 /**
  * Class for the player
+ * @author Gaurinath Subash
+ * @author Michael Elliott
+ * @author Xander Hong
+ * @author Kristian Padgett
  */
 public class Player {
 	
