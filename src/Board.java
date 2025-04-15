@@ -61,7 +61,7 @@ public class Board {
     public boolean checkHorizontalWin(int row, char playerChar) {
         for (int i = 0; i < columns-3; i++) {
             for (int j = 0; j < columns; j++) {
-                if((GAME_BOARD[row][j] == playerChar) && (GAME_BOARD[row][j+1] == playerChar) && (GAME_BOARD[row][j+2] == playerChar) && (GAME_BOARD[row][j+3] == playerChar)) {
+                if((GAME_BOARD[row-1][j] == playerChar) && (GAME_BOARD[row-1][j+1] == playerChar) && (GAME_BOARD[row-1][j+2] == playerChar) && (GAME_BOARD[row-1][j+3] == playerChar)) {
                     return true;
                 }
             }
