@@ -122,7 +122,7 @@ public class Game {
                     }
                 }
                 if (gameBoard.checkHorizontalWin(potentialTurn, playerOneChar)) {
-                   System.out.println("Player one wins");
+                   System.out.println(playerOneName + " wins");
                 }
             }
             
@@ -149,7 +149,7 @@ public class Game {
                 }
                 
                 if (gameBoard.checkHorizontalWin(potentialTurn, playerTwoChar)) {
-                   System.out.println("Player two wins");
+                   System.out.println(playerTwoName + " wins");
                 }
             }
         }
