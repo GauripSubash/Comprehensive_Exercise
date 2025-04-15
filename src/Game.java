@@ -1,7 +1,9 @@
 import java.util.*;
 
 
-
+/**
+ * Class for the Connect 4 game
+ */
 public class Game {
 	
 	private Player playerOne;
@@ -10,7 +12,11 @@ public class Game {
 	private int column; 
     private boolean playing;
 	private boolean playAgain;
-	
+	/**
+	 * Overloaded Contructor that sets the two players and variables
+	 * @param playerOne first player object
+	 * @param playerTwo second player object
+	 */
 	public Game(Player playerOne, Player playerTwo) {
 		
 		this.playerOne = playerOne;
@@ -21,45 +27,81 @@ public class Game {
 		
 	}
 	
+	/**
+	 * Getter method for player one
+	 * @return player one object
+	 */
 	public Player getPlayerOne() {
 		return playerOne;
 	}
 	
+	/**
+	 * Getter method for player two
+	 * @return player two object
+	 */
 	public Player getPlayerTwo() {
 		return playerTwo;
 	}
-	
+
+	/**
+	 * Getter method for the player turn
+	 * @return int player turn
+	 */
 	public int getPlayerTurn() {
 		return playerTurn;
 	}
 	
+	/**
+	 * Getter method for the column
+	 * @return int column
+	 */
 	public int getColumn() {
 		return column; 
 	}
 	
+	/**
+	 * Method for changing if they should be playing
+	 */
 	public void playingToggle() {
 		playing = !playing;
 	}
 	
+	/**
+	 * Method for playing again toggle
+	 */
 	public void playAgainToggle() {
 		playAgain = !playAgain;
 	}
 	
+	/**
+	 * Setter method for amount of columns
+	 * @param columnInput user input column
+	 */
 	public void usePlayerInput(int columnInput) {
 		this.column = columnInput;
 	}
-	
+
+	/**
+	 * Method for incrementing the turn
+	 */
 	public void incrementTurn() {
         playerTurn++;
 	}
-	
+
+	/**
+	 * Method for if player one wins
+	 */
 	public void playerOneWin() {
 		playerOne.addWin();
 		System.out.println("Congratulations " + playerOne.getName() 
 		+ " for winning the game!");
 		System.out.print("Want to play again? (y/n): ");
 	}
-	
+
+
+	/**
+	 * Method for if player two wins
+	 */
 	public void playerTwoWin() {
 		playerTwo.addWin();
 		System.out.println("Congratulations " + playerTwo.getName() 
@@ -67,6 +109,9 @@ public class Game {
 		System.out.print("Want to play again? (y/n): ");
 	}
 
+	/**
+	 * Main method for the Connect 4 game
+	 */
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
         
