@@ -7,7 +7,6 @@ public class Player {
 	private String name;
 	private int wins;
 	
-	
 	public Player(String name) {
 		this.name = name;
 		wins = 0;
@@ -19,14 +18,16 @@ public class Player {
 	}
 	
 	public String getName() {
-        return this.name;
-    }
+		return name;
+	}
 	
-    public int getWins() {
-        return this.wins;
-    }
-
-    public void addWin() {
-        this.wins++;
-    }
+	public int getWins() {
+		return wins;
+	}
+	
+	public void addWin() {
+		wins++;
+	}
+	
+	
 }
