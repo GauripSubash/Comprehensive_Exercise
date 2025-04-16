@@ -128,7 +128,7 @@ public class Board {
      */
     public boolean checkVerticalWin(char playerChar) {
         for (int i = 0; i < columns; i++) {
-            for (int j = columns - 1; j >= columns - (columns-3); j--) {
+            for (int j = columns - 1; j >= columns - (columns - 3); j--) {
                 if ((gameboard[j][i] == playerChar) && (gameboard[j - 1][i] == playerChar) && 
                     (gameboard[j - 2][i] == playerChar) && (gameboard[j - 3][i] == playerChar)) {
                     return true;
@@ -144,7 +144,7 @@ public class Board {
      * @return if there is a win
      */
     public boolean checkDiagonalRightWin(char playerChar) {
-        for(int i = columns - 1; i >= columns - (columns-3); i--) {  
+        for(int i = columns - 1; i >= columns - (columns - 3); i--) {  
             for (int j = 0; j < columns - 3; j++) {
                 if ((gameboard[i][j] == playerChar) && (gameboard[i - 1][j + 1] == playerChar) && 
                     (gameboard[i - 2][j + 2] == playerChar) && 
@@ -162,8 +162,8 @@ public class Board {
      * @return if there is a win
      */
     public boolean checkDiagonalLeftWin(char playerChar) {
-        for(int i = columns - 1; i >= columns - (columns-3); i--) {  
-            for (int j = columns - 1; j >= columns - (columns-3); j--) {
+        for(int i = columns - 1; i >= columns - (columns - 3); i--) {  
+            for (int j = columns - 1; j >= columns - (columns - 3); j--) {
                 if ((gameboard[i][j] == playerChar) && (gameboard[i - 1][j - 1] == playerChar) && 
                     (gameboard[i - 2][j - 2] == playerChar) && 
                         (gameboard[i - 3][j - 3] == playerChar)) {
