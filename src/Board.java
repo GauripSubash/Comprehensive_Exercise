@@ -104,7 +104,6 @@ public class Board {
 
         for (int i = rows - 1; i >= 0; i--) {
             if ((gameboard[i][playersChoice] != 'x') && (gameboard[i][playersChoice] != 'o')){
-                System.out.println("row = " + i);
                 return i;
             }
         }

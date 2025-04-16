@@ -165,7 +165,7 @@ public class Game {
             if (connectFour.playerTurn == 0) {
                 System.out.println(playerOneName + 
                         " goes first. They will be 'x'. " +
-                                "The other player will be 'o'.");
+                                playerTwoName + " will be 'o'.");
                 playerOneChar = 'x';
                 playerTwoChar = 'o';
             } else if (connectFour.playerTurn == 1) {
