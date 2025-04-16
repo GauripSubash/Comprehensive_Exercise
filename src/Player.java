@@ -1,6 +1,3 @@
-import java.util.*;
-
-
 /**
  * Class for the player
  * @author Gaurinath Subash

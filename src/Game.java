@@ -133,31 +133,32 @@ public class Game {
         Scanner scnr = new Scanner(System.in);
         System.out.println("\nWelcome to Connect Four!");
         System.out.print("Enter Player 1 Name: ");
-        String playerOneName = scnr.next();
+        String playerOneName = scnr.nextLine();
         System.out.print("Enter Player 2 Name: ");
-        String playerTwoName = scnr.next();
+        String playerTwoName = scnr.nextLine();
         Player playerOne = new Player(playerOneName);
         Player playerTwo = new Player(playerTwoName);
         Game connectFour = new Game(playerOne, playerTwo);
-        System.out.print("Enter the size of the board: ");
-        int rows = 0 ;
-        while (scnr.hasNext()) {
-            if (scnr.hasNextInt()) {
-                rows = scnr.nextInt();
-                if (rows < ROW_MIN) {
-                    System.out.println("Invalid board size (must be greater than 3)");
-                    System.out.print("Enter the size of the board: ");
-                } else {
-                    break;
-                }
-            } else {
-                System.out.print("Enter the size of the board (integer): ");
-                scnr.next();
-            }
-        }
-        System.out.println();
-        Board gameBoard = new Board(rows, rows);
         while (connectFour.playAgain) {
+            System.out.print("Enter the size of the board: ");
+            int rows = 0 ;
+            while (scnr.hasNext()) {
+                if (scnr.hasNextInt()) {
+                    rows = scnr.nextInt();
+                    if (rows < ROW_MIN) {
+                        System.out.println("Invalid board size (must be greater than 3)");
+                        System.out.print("Enter the size of the board: ");
+                    } else {
+                        break;
+                    }
+                } else {
+                    System.out.print("Enter the size of the board (integer): ");
+                    scnr.next();
+                }
+            }
+            System.out.println();
+            Board gameBoard = new Board(rows, rows);
+        
             Random rand = new Random();
             connectFour.playerTurn = rand.nextInt(2);
             char playerOneChar = ' ';
@@ -183,17 +184,27 @@ public class Game {
                 if (connectFour.playerTurn % 2 == 0) {
                     System.out.print(playerOneName + ", select a column: ");
                     while (scnr.hasNext()) {
-                        if (scnr.hasNextInt()) {
-                            playerChoice = scnr.nextInt();
-                            break;
-                        } else {
-                            System.out.print(playerOneName + ", select a column: ");
-                            scnr.next();
+                        String line = scnr.next();
+                        // System.out.println(line);
+                        // System.out.println("line = " + line);
+                        Scanner scan = new Scanner(line);
+                        while (scan.hasNext()) {
+                            if (scan.hasNextInt()) {
+                                // System.out.println("found int");
+                                playerChoice = scan.nextInt();
+                                break;
+                            } else {
+                                System.out.print(playerOneName + ", select a column: ");
+                                scan.nextLine();
+                            }
                         }
+                        scnr.nextLine();
+                        break;
                     }
                     turnValid = false;
                     int potentialTurn = 0;
                     while (!turnValid) {
+                        // System.out.println("playerChoice = " + playerChoice);
                         potentialTurn = gameBoard.potentialElement(playerChoice - 1, playerOneChar);
                         if (potentialTurn != -1) {               
                             gameBoard.addElement(playerChoice - 1, 
@@ -202,13 +213,13 @@ public class Game {
                             connectFour.incrementTurn();
                             turnValid = true;
                         } else {
-                            System.out.print(playerOneName + ", select a column: ");
+                            System.out.print(playerOneName + ", select a new column: ");
                             while (scnr.hasNext()) {
                                 if (scnr.hasNextInt()) {
                                     playerChoice = scnr.nextInt();
                                     break;
                                 } else {
-                                    System.out.print(playerOneName + ", select a column: ");
+                                    System.out.print(playerOneName + ", select a new column: ");
                                     scnr.next();
                                 }
                             }
@@ -216,32 +227,48 @@ public class Game {
                     }
                     if (gameBoard.checkHorizontalWin(potentialTurn, playerOneChar)) {
                         System.out.println(playerOneName + " wins");
+                        playerOne.addWin();
                         connectFour.playingToggle();
                     } else if (gameBoard.checkVerticalWin(playerOneChar)) {
                         System.out.println(playerOneName + " wins");
+                        playerOne.addWin();
                         connectFour.playingToggle();
                     } else if (gameBoard.checkDiagonalRightWin(playerOneChar)) {
                         System.out.println(playerOneName + " wins");
+                        playerOne.addWin();
                         connectFour.playingToggle();
                     } else if (gameBoard.checkDiagonalLeftWin(playerOneChar)) {
                         System.out.println(playerOneName + " wins");
+                        playerOne.addWin();
+                        connectFour.playingToggle();
+                    } else if (gameBoard.checkTie()) {
+                        System.out.println("It's a tie!");
                         connectFour.playingToggle();
                     }
                 }
                 else if (connectFour.playerTurn % 2 == 1) {
                     System.out.print(playerTwoName + ", select a column: ");
                     while (scnr.hasNext()) {
-                        if (scnr.hasNextInt()) {
-                            playerChoice = scnr.nextInt();
-                            break;
-                        } else {
-                            System.out.print(playerTwoName + ", select a column: ");
-                            scnr.next();
+                        String line = scnr.next();
+                        // System.out.println("line = " + line);
+                        Scanner scan = new Scanner(line);
+                        while (scan.hasNext()) {
+                            if (scan.hasNextInt()) {
+                                // System.out.println("found int");
+                                playerChoice = scan.nextInt();
+                                break;
+                            } else {
+                                System.out.print(playerOneName + ", select a column: ");
+                                scan.nextLine();
+                            }
                         }
+                        scnr.nextLine();
+                        break;
                     }
                     turnValid = false;
                     int potentialTurn = 0;
                     while (!turnValid) {
+                        // System.out.println("playerChoice = " + playerChoice);
                         potentialTurn = gameBoard.potentialElement(playerChoice - 1, playerTwoChar);
                         if (potentialTurn != -1) {               
                             gameBoard.addElement(playerChoice - 1, 
@@ -250,13 +277,13 @@ public class Game {
                             connectFour.incrementTurn();
                             turnValid = true;
                         } else {
-                            System.out.print(playerTwoName + ", select a column: ");
+                            System.out.print(playerTwoName + ", select a new column: ");
                             while (scnr.hasNext()) {
                                 if (scnr.hasNextInt()) {
                                     playerChoice = scnr.nextInt();
                                     break;
                                 } else {
-                                    System.out.print(playerTwoName + ", select a column: ");
+                                    System.out.print(playerTwoName + ", select a new column: ");
                                     scnr.next();
                                 }
                             }
@@ -264,21 +291,30 @@ public class Game {
                     }
                     if (gameBoard.checkHorizontalWin(potentialTurn, playerTwoChar)) {
                         System.out.println(playerTwoName + " wins");
+                        playerTwo.addWin();
                         connectFour.playingToggle();
                     } else if (gameBoard.checkVerticalWin(playerTwoChar)) {
                         System.out.println(playerTwoName + " wins");
+                        playerTwo.addWin();
                         connectFour.playingToggle();
                     } else if (gameBoard.checkDiagonalRightWin(playerTwoChar)) {
                         System.out.println(playerTwoName + " wins");
+                        playerTwo.addWin();
                         connectFour.playingToggle();
                     } else if (gameBoard.checkDiagonalLeftWin(playerTwoChar)) {
                         System.out.println(playerTwoName + " wins");
+                        playerTwo.addWin();
+                        connectFour.playingToggle();
+                    } else if (gameBoard.checkTie()) {
+                        System.out.println("It's a tie!");
                         connectFour.playingToggle();
                     }
                 }
             }
             System.out.println("\n\n");
             System.out.println("Thanks for playing Connect4!");
+            System.out.println(playerOneName + " wins: " + playerOne.getWins());
+            System.out.println(playerTwoName + " wins: " + playerTwo.getWins());
             System.out.print("Play again? (y,n): ");
             String input = scnr.next();
             if (input.charAt(0) == 'y' || input.charAt(0) == 'Y') {
