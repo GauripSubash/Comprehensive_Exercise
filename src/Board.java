@@ -8,14 +8,26 @@ import java.util.*;
  * @author Kristian Padgett
  */
 public class Board {
-	
+
+	/** double char array for the board */
     public char[][] GAME_BOARD;
 	
+	/** Character for x */
 	private char playerOneElement = 'x';
+
+	/** Character for o */
     private char playerTwoElement = 'o';
+
+	/** Character for the current element */
 	private char currentElement;
+
+	/** Integer for the element count */
 	private int elementCount;
+
+	/** Integer representing the rows */
 	private int rows;
+
+	/** Integer representing the columns */
 	private int columns;
 	
 	/**
