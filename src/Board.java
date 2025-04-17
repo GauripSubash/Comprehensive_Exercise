@@ -6,9 +6,6 @@
  * @author Kristian Padgett
  */
 public class Board {
-    
-    /** Constant for calculating the win */
-    public static final int CONSTANT_5 = 5;
 
     /** double char array for the board */
     public char[][] gameboard;
