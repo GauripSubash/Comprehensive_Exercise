@@ -107,7 +107,25 @@ public class Board {
      * @return if there is a win
      */
     public boolean checkHorizontalWin(int row, char playerChar) {
+        
+        int totalMaxConnections = 0;
         for (int i = 0; i < columns - 3; i++) {
+            int maxConnections = 0;
+            if(gameboard[row][i] == playerChar){
+                maxConnections++;
+                if(gameboard[row][i + 1] == playerChar){
+                    maxConnections++;
+                    if(gameboard[row][i + 2] == playerChar){
+                        maxConnections++;
+                        if(gameboard[row][i + 3] == playerChar){
+                            maxConnections++;
+                        }
+                    }
+                }
+            }
+            if(maxConnections > totalMaxConnections){
+                totalMaxConnections = maxConnections;
+            }
             if ((gameboard[row][i] == playerChar) && 
                     (gameboard[row][i + 1] == playerChar) && 
                         (gameboard[row][i + 2] == playerChar) && 
@@ -115,6 +133,7 @@ public class Board {
                 return true;
             }
         }
+        System.out.println(playerChar + "'s Horizontal Max Connections: " + totalMaxConnections);
         return false;
     }
     
@@ -124,14 +143,33 @@ public class Board {
      * @return if there is a win
      */
     public boolean checkVerticalWin(char playerChar) {
+        
+        int totalMaxConnections = 0;
         for (int i = 0; i < columns; i++) {
             for (int j = columns - 1; j >= columns - (columns - 3); j--) {
+                int maxConnections = 0;
+                if(gameboard[j][i] == playerChar){
+                    maxConnections++;
+                    if(gameboard[j - 1][i] == playerChar){
+                        maxConnections++;
+                        if(gameboard[j - 2][i] == playerChar){
+                            maxConnections++;
+                            if(gameboard[j - 3][i] == playerChar){
+                                maxConnections++;
+                            }
+                        }
+                    }
+                }
+                if(maxConnections > totalMaxConnections){
+                    totalMaxConnections = maxConnections;
+                }
                 if ((gameboard[j][i] == playerChar) && (gameboard[j - 1][i] == playerChar) && 
                     (gameboard[j - 2][i] == playerChar) && (gameboard[j - 3][i] == playerChar)) {
                     return true;
                 }
             }
         }
+        System.out.println(playerChar + "'s Vertical Max Connections: " + totalMaxConnections);
         return false;
     }
     
@@ -141,8 +179,26 @@ public class Board {
      * @return if there is a win
      */
     public boolean checkDiagonalRightWin(char playerChar) {
+        
+        int totalMaxConnections = 0;
         for(int i = columns - 1; i >= columns - (columns - 3); i--) {  
             for (int j = 0; j < columns - 3; j++) {
+                int maxConnections = 0;
+                if(gameboard[i][j] == playerChar){
+                    maxConnections++;
+                    if(gameboard[i - 1][j + 1] == playerChar){
+                        maxConnections++;
+                        if(gameboard[i - 2][j + 2] == playerChar){
+                            maxConnections++;
+                            if(gameboard[i - 3][j + 3] == playerChar){
+                                maxConnections++;
+                            }
+                        }
+                    }
+                }
+                if(maxConnections > totalMaxConnections){
+                    totalMaxConnections = maxConnections;
+                }
                 if ((gameboard[i][j] == playerChar) && (gameboard[i - 1][j + 1] == playerChar) && 
                     (gameboard[i - 2][j + 2] == playerChar) && 
                         (gameboard[i - 3][j + 3] == playerChar)) {
@@ -150,6 +206,7 @@ public class Board {
                 }
             }
         }
+        System.out.println(playerChar + "'s Right Diagonal Max Connections: " + totalMaxConnections);
         return false;
     }
     
@@ -159,8 +216,25 @@ public class Board {
      * @return if there is a win
      */
     public boolean checkDiagonalLeftWin(char playerChar) {
+        int totalMaxConnections = 0;
         for(int i = columns - 1; i >= columns - (columns - 3); i--) {  
             for (int j = columns - 1; j >= columns - (columns - 3); j--) {
+                int maxConnections = 0;
+                if(gameboard[i][j] == playerChar){
+                    maxConnections++;
+                    if(gameboard[i - 1][j - 1] == playerChar){
+                        maxConnections++;
+                        if(gameboard[i - 2][j - 2] == playerChar){
+                            maxConnections++;
+                            if(gameboard[i - 3][j - 3] == playerChar){
+                                maxConnections++;
+                            }
+                        }
+                    }
+                }
+                if(maxConnections > totalMaxConnections){
+                    totalMaxConnections = maxConnections;
+                }
                 if ((gameboard[i][j] == playerChar) && (gameboard[i - 1][j - 1] == playerChar) && 
                     (gameboard[i - 2][j - 2] == playerChar) && 
                         (gameboard[i - 3][j - 3] == playerChar)) {
@@ -168,6 +242,8 @@ public class Board {
                 }
             }
         }
+        System.out.println(playerChar + "'s Left Diagonal Max Connections: " + totalMaxConnections);
+        System.out.println();
         return false;
     }
 

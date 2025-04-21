@@ -138,6 +138,8 @@ public class Game {
         String playerTwoName = scnr.nextLine();
         Player playerOne = new Player(playerOneName);
         Player playerTwo = new Player(playerTwoName);
+        int playerOnePieces = 0;
+        int playerTwoPieces = 0;
         Game connectFour = new Game(playerOne, playerTwo);
         while (connectFour.playAgain) {
             System.out.print("Enter the size of the board: ");
@@ -210,6 +212,12 @@ public class Game {
                             gameBoard.addElement(playerChoice - 1, 
                                 playerOneChar);                    
                             gameBoard.printBoard();
+                            playerOne.addMove();
+                            playerOnePieces = playerOne.getPiecesPlaced();
+                            System.out.println();
+                            System.out.println(playerOneName + "'s pieces placed: " + playerOnePieces);
+                            System.out.println(playerTwoName + "'s pieces placed: " + playerTwoPieces);
+                            System.out.println();
                             connectFour.incrementTurn();
                             turnValid = true;
                         } else {
@@ -274,6 +282,12 @@ public class Game {
                             gameBoard.addElement(playerChoice - 1, 
                                 playerTwoChar);                    
                             gameBoard.printBoard();
+                            playerTwo.addMove();
+                            playerTwoPieces = playerTwo.getPiecesPlaced();
+                            System.out.println();
+                            System.out.println(playerOneName + "'s pieces placed: " + playerOnePieces);
+                            System.out.println(playerTwoName + "'s pieces placed: " + playerTwoPieces);
+                            System.out.println();
                             connectFour.incrementTurn();
                             turnValid = true;
                         } else {

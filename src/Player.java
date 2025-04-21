@@ -12,6 +12,8 @@ public class Player {
     
     /** Amount of wins */
     private int wins;
+
+    private int piecesPlaced;
     
     /**
      * Overloaded constructor that sets the player name
@@ -20,6 +22,7 @@ public class Player {
     public Player(String name) {
         this.name = name;
         wins = 0;
+        piecesPlaced = 0;
     }
     
     /**
@@ -48,6 +51,10 @@ public class Player {
         return wins;
     }
 
+    public int getPiecesPlaced() {
+        return piecesPlaced;
+    }
+
     /**
      * Method for adding wins to the player
      */
@@ -55,5 +62,8 @@ public class Player {
         wins++;
     }
     
+    public void addMove(){
+        piecesPlaced++;
+    }
     
 }
